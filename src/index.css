@@ -1,0 +1,80 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f6f9fc;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #1a202c;
+}
+
+.tabs button {
+  background: none;
+  border: none;
+  margin-right: 20px;
+  font-weight: bold;
+  color: #444;
+  cursor: pointer;
+  padding: 10px 0;
+  border-bottom: 2px solid transparent;
+}
+
+.tabs button.active {
+  color: #2563eb;
+  border-bottom-color: #2563eb;
+}
+
+.search-bar {
+  display: flex;
+  margin: 20px 0;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.table th, .table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.status.Complete { background: #d1fae5; color: #065f46; }
+.status.Continue { background: #bfdbfe; color: #1e40af; }
+.status.Restitute { background: #fef3c7; color: #92400e; }
+.status.Canceled { background: #fee2e2; color: #991b1b; }
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
