@@ -107,6 +107,7 @@ body {
   display: inline-block;
 }
 
+/* Old Status Styles - optional if no longer used
 .status.Completed {
   background-color: #28a745;
 }
@@ -123,6 +124,38 @@ body {
 .status.Canceled {
   background-color: #dc3545;
 }
+*/
+
+/* ✅ New Status Styles */
+.status.DELIVERED {
+  background-color: #388e3c; /* elegant green */
+}
+
+.status.SHIPPED {
+  background-color: #0288d1; /* ocean blue */
+}
+
+.status.RETURNED {
+  background-color: #e53935; /* soft red */
+}
+
+.status.EXCHANGEINITIATED {
+  background-color: #fb8c00; /* bold amber */
+}
+
+.status.PENDING {
+  background-color: #fdd835; /* subtle yellow */
+  color: #212121;
+}
+
+.status.CANCELED {
+  background-color: #757575; /* muted gray */
+}
+
+.status.EXCHANGED {
+  background-color: #7e57c2; /* soft purple */
+}
+
 
 .pagination {
   display: flex;

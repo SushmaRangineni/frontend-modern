@@ -3,7 +3,17 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../index.css';
 
-const tabs = ['All Orders', 'Completed', 'Continuing', 'Restitute', 'Canceled'];
+// ✅ Updated status tabs
+const tabs = [
+  'All Orders',
+  'Delivered',
+  'Shipped',
+  'Returned',
+  'ExchangeInitiated',
+  'Pending',
+  'Canceled',
+  'Exchanged'
+];
 
 const OrderList = () => {
   const [tab, setTab] = useState('All Orders');
@@ -41,14 +51,14 @@ const OrderList = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    navigate('/login'); // ✅ use navigate instead of reload
+    navigate('/login');
   };
 
   const handleSearch = () => {
-    setPage(1); // Reset to first page when filters are updated
+    setPage(1);
   };
 
-  const getStatusClass = (status) => `status ${status?.charAt(0).toUpperCase() + status?.slice(1).toLowerCase()}`;
+const getStatusClass = (status) => `status ${status?.replace(/\s+/g, '').toUpperCase()}`;
 
   return (
     <div className="order-page">
@@ -134,10 +144,13 @@ const OrderList = () => {
             onChange={(e) => setFilters({ ...filters, status: e.target.value })}
           >
             <option value="">-- Select Status --</option>
-            <option value="COMPLETED">Completed</option>
-            <option value="CONTINUING">Continuing</option>
-            <option value="RESTITUTE">Restitute</option>
+            <option value="DELIVERED">Delivered</option>
+            <option value="SHIPPED">Shipped</option>
+            <option value="RETURNED">Returned</option>
+            <option value="EXCHANGEINITIATED">Exchange Initiated</option>
+            <option value="PENDING">Pending</option>
             <option value="CANCELED">Canceled</option>
+            <option value="EXCHANGED">Exchanged</option>
           </select>
         )}
 
@@ -157,16 +170,17 @@ const OrderList = () => {
         </thead>
         <tbody>
           {orders.length > 0 ? (
-            orders.map(({ orderId, customerName, item, deliveryDate, deliveryPrice, status }) => (
-              <tr key={orderId}>
-                <td>{orderId}</td>
-                <td>{customerName}</td>
-                <td>{item}</td>
-                <td>{new Date(deliveryDate).toLocaleDateString()}</td>
-                <td>${Number(deliveryPrice).toFixed(2)}</td>
-                <td><span className={getStatusClass(status)}>{status}</span></td>
-              </tr>
-            ))
+orders.map((order) => (
+  <tr key={order.orderId}>
+    <td>{order.orderId}</td>
+    <td>{order.customerName}</td>
+    <td>{order.item}</td>
+    <td>{new Date(order.deliveryDate).toLocaleDateString()}</td>
+    <td>${Number(order.deliveryPrice).toFixed(2)}</td>
+    <td><span className={getStatusClass(order.status)}>{order.status}</span></td>
+  </tr>
+))
+
           ) : (
             <tr>
               <td colSpan="6" style={{ textAlign: 'center', padding: '1rem' }}>No orders found.</td>
